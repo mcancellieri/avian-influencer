@@ -9,6 +9,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const progress = document.getElementById('progress');
     const timeDisplay = document.getElementById('time-display');
     const pigeonBox = document.querySelector('.pigeon-box');
+    const coinSlot = document.querySelector('.coin-slot-unit');
+    const coinReturn = document.querySelector('.coin-return');
+
+    // Coin Animation Logic
+    coinSlot.addEventListener('click', () => {
+        if (document.querySelector('.falling-coin')) return; // Prevent spamming
+
+        const coin = document.createElement('div');
+        coin.className = 'falling-coin';
+        coin.textContent = 'O';
+        displayArea.appendChild(coin);
+
+        // Remove coin after animation
+        setTimeout(() => {
+            coin.remove();
+        }, 1000);
+
+        // Knock down pigeon when coin hits (approx 0.5s into animation)
+        setTimeout(() => {
+            pigeonBox.classList.add('knocked');
+            setTimeout(() => {
+                pigeonBox.classList.remove('knocked');
+            }, 800);
+        }, 400);
+    });
+
+    // Coin Return Animation (Tray)
+    coinReturn.addEventListener('click', () => {
+        if (document.querySelector('.return-coin')) return;
+
+        const coin = document.createElement('div');
+        coin.className = 'return-coin';
+        coin.textContent = 'O';
+        displayArea.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 800);
+
+        // Pigeon squish effort
+        pigeonBox.classList.add('return-squish');
+        setTimeout(() => {
+            pigeonBox.classList.remove('return-squish');
+        }, 600);
+    });
 
     const stories = {
         '1': { name: 'Pigeon', text: 'I used to carry secret messages across the front lines. Now I just hang out near the subway for crumbs.', img: 'https://images.unsplash.com/photo-1514823197305-16c58a8ef756?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },

@@ -1,14 +1,15 @@
 :root {
     --phone-gray: #7a7a7a;
-    --phone-gray-dark: #4a4a4a;
-    --phone-gray-light: #9a9a9a;
-    --metal-silver: #b0b0b0;
-    --metal-dark: #424242;
-    --screen-green: #3d5a3d;
-    --screen-text: #a8d5a8;
-    --keypad-black: #1a1a1a;
-    --keypad-text: #ffffff;
-    --display-bg: #1a1a1a;
+    --phone-gray-dark: #2c2c2c;
+    --phone-gray-light: #d1d1d1;
+    --metal-silver: #a8a8a8;
+    --metal-shine: #ffffff;
+    --metal-dark: #3a3a3a;
+    --screen-green: #1e2e1e;
+    --screen-text: #8fb18f;
+    --keypad-black: #121212;
+    --keypad-text: #e0e0e0;
+    --display-bg: #0a0a0a;
 }
 
 * {
@@ -18,121 +19,172 @@
 }
 
 body {
-    background-color: #121212;
+    background-color: #0d0d0d;
     font-family: 'Courier New', Courier, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 10px;
+    background-image:
+            radial-gradient(circle at 50% 50%, #1a1a1a 0%, #0d0d0d 100%);
 }
 
 .phone-casing {
-    background-color: var(--phone-gray);
+    /* Metallic Brushed Surface */
+    background: linear-gradient(135deg,
+    #8e8e8e 0%,
+    #cecece 20%,
+    #7a7a7a 40%,
+    #9e9e9e 60%,
+    #666666 80%,
+    #9a9a9a 100%);
+    background-size: 400% 400%;
+
     width: 100%;
     max-width: 440px;
-    padding: 40px 25px;
-    border-radius: 10px;
-    border: 5px solid var(--phone-gray-dark);
+    padding: 45px 30px;
+    border-radius: 12px;
+
+    /* Heavy Bevelled Edge */
+    border-top: 2px solid var(--metal-shine);
+    border-left: 2px solid var(--metal-shine);
+    border-right: 3px solid #444;
+    border-bottom: 5px solid #222;
+
     box-shadow:
-            inset -5px -5px 20px rgba(0,0,0,0.4),
-            inset 5px 5px 20px rgba(255,255,255,0.1),
-            0 30px 60px rgba(0,0,0,0.7);
+        /* Outer shadows */
+            20px 40px 80px rgba(0,0,0,0.8),
+            0 10px 20px rgba(0,0,0,0.4),
+                /* Inner metallic depth */
+            inset -2px -2px 10px rgba(0,0,0,0.5),
+            inset 2px 2px 10px rgba(255,255,255,0.3);
+
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 30px;
     position: relative;
+    overflow: hidden;
+}
+
+/* Brushed Metal Texture Overlay */
+.phone-casing::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Cfilter id='noise'%3%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3%3C/filter%3%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
 }
 
 .phone-header {
-    background: var(--metal-dark);
+    background: linear-gradient(to bottom, #444, #222);
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 2px solid var(--metal-silver);
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    border: 1px solid #666;
+    border-bottom: 2px solid #111;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    z-index: 1;
 }
 
 .brand {
-    color: var(--metal-silver);
-    font-size: 0.7rem;
+    color: #999;
+    font-size: 0.65rem;
     font-weight: bold;
-    letter-spacing: 3px;
-    opacity: 0.8;
+    letter-spacing: 4px;
+    text-shadow: 1px 1px 0 black;
 }
 
 .coin-return {
-    width: 50px;
-    height: 40px;
-    background: #222;
-    border: 3px solid var(--metal-silver);
-    border-radius: 4px;
+    width: 55px;
+    height: 45px;
+    background: linear-gradient(135deg, #111, #333);
+    border: 2px solid #555;
+    border-radius: 3px;
     position: relative;
-    box-shadow: inset 0 5px 10px black;
+    box-shadow: inset 0 8px 15px black;
 }
 
 .coin-return::after {
     content: "";
     position: absolute;
-    top: 50%; left: 50%;
+    top: 45%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 30px;
-    height: 4px;
-    background: #444;
-    border-radius: 2px;
+    width: 35px;
+    height: 5px;
+    background: #000;
+    border-radius: 1px;
+    box-shadow: 0 1px 1px #444;
 }
 
 .coin-slot-unit {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
     position: absolute;
-    right: -15px;
-    top: 120px;
+    right: -5px;
+    top: 140px;
+    z-index: 2;
 }
 
 .slot {
-    width: 10px;
-    height: 60px;
-    background: #111;
-    border: 2px solid var(--metal-silver);
+    width: 12px;
+    height: 70px;
+    background: #000;
+    border: 2px solid #777;
+    border-right-color: #333;
+    border-bottom-color: #333;
     border-radius: 2px;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.6);
 }
 
 .display-area {
     background: var(--screen-green);
-    border: 10px solid var(--metal-dark);
-    border-radius: 4px;
+    /* Cast-metal bezel */
+    border: 12px solid transparent;
+    border-image: linear-gradient(to bottom right, #555, #111, #444) 1;
+    outline: 1px solid #000;
+
+    border-radius: 2px;
     padding: 20px;
-    min-height: 220px;
+    min-height: 240px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 0 30px rgba(0,0,0,0.9);
+    box-shadow:
+            inset 0 0 40px rgba(0,0,0,1),
+            0 4px 10px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
+    z-index: 1;
+}
+
+.display-area::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .ascii-art {
     color: var(--screen-text);
-    font-size: 14px; /* Bigger ASCII */
+    font-size: 14px;
     line-height: 1.1;
-    text-shadow: 0 0 8px var(--screen-text);
-    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(143, 177, 143, 0.6);
+    filter: blur(0.3px);
 }
 
 .story-panel {
-    background: rgba(0,0,0,0.9);
-    border: 1px solid var(--screen-text);
-    padding: 15px;
+    background: rgba(0,0,0,0.95);
+    border: 1px solid #3d5a3d;
+    padding: 20px;
     margin-top: 10px;
     color: var(--screen-text);
-    border-radius: 4px;
+    border-radius: 2px;
     z-index: 10;
     text-align: center;
 }
@@ -140,91 +192,95 @@ body {
 .story-panel.hidden { display: none; }
 
 .bird-avatar {
-    width: 70px;
-    height: 70px;
-    border: 1px solid var(--screen-text);
-    margin: 0 auto 10px;
+    width: 75px;
+    height: 75px;
+    border: 1px solid #3d5a3d;
+    margin: 0 auto 12px;
     background-size: cover;
-    filter: grayscale(100%) sepia(30%) brightness(1.2);
+    filter: grayscale(100%) sepia(20%) brightness(0.8) contrast(1.2);
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
 
 .keypad-container {
-    background: var(--metal-dark);
-    padding: 20px;
-    border-radius: 8px;
-    border: 4px solid #333;
+    background: linear-gradient(to bottom, #2a2a2a, #111);
+    padding: 25px;
+    border-radius: 6px;
+    border: 1px solid #444;
+    border-bottom: 3px solid #000;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-    box-shadow: inset 0 5px 20px rgba(0,0,0,0.6);
+    box-shadow:
+            inset 0 10px 30px rgba(0,0,0,0.8),
+            0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1;
 }
 
 .phone-button {
-    background: var(--keypad-black);
-    border: 2px solid var(--metal-silver);
-    border-radius: 8px;
-    height: 70px; /* Reduced height to fit on mobile screens */
+    /* Injection molded plastic look */
+    background: linear-gradient(135deg, #222, #050505);
+    border: 1px solid #444;
+    border-top: 1px solid #666;
+    border-radius: 6px;
+    height: 75px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 8px;
     cursor: pointer;
-    transition: all 0.1s;
+    transition: all 0.05s;
+
+    /* 3D Button Depth */
     box-shadow:
-            0 4px 0 #000,
-            inset 1px 1px 1px rgba(255,255,255,0.1);
+            0 6px 0 #000,
+            0 8px 15px rgba(0,0,0,0.6);
 }
 
 .phone-button:active {
-    transform: translateY(3px);
-    box-shadow: 0 1px 0 #000;
+    transform: translateY(4px);
+    box-shadow:
+            0 2px 0 #000,
+            0 4px 8px rgba(0,0,0,0.4);
+    background: #000;
 }
 
 .btn-num {
-    color: var(--keypad-text);
-    font-size: 1.8rem; /* Larger, clearer numbers */
-    font-weight: bold;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 900;
     text-shadow:
-            -1px -1px 0px rgba(0,0,0,0.8),
-            1px 1px 0px rgba(255,255,255,0.1); /* Subtle embossed/debossed look */
+            -1px -1px 1px rgba(0,0,0,1),
+            1px 1px 1px rgba(255,255,255,0.1);
     line-height: 1;
 }
 
 .btn-label {
-    color: var(--metal-silver);
-    font-size: 0.55rem;
-    font-weight: bold;
+    color: #666;
+    font-size: 0.5rem;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-top: 4px;
-}
-
-.btn-art {
-    display: none; /* Removed ASCII art from buttons as requested */
-}
-
-.btn-label {
-    color: var(--metal-silver);
-    font-size: 0.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
+    margin-top: 6px;
 }
 
 #close-story {
-    background: #222;
-    color: var(--screen-text);
-    border: 1px solid var(--screen-text);
-    padding: 8px 15px;
-    margin-top: 10px;
+    background: linear-gradient(to bottom, #333, #111);
+    color: #8fb18f;
+    border: 1px solid #3d5a3d;
+    padding: 10px 20px;
+    margin-top: 15px;
     font-family: inherit;
     font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
-    transition: background 0.2s;
+    box-shadow: 0 4px 0 #000;
 }
 
-#close-story:hover {
-    background: #333;
+#close-story:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #000;
 }
 
 .audio-controls {
@@ -234,27 +290,98 @@ body {
 
 .playback-bar {
     height: 4px;
-    background: #111;
-    margin-bottom: 5px;
-    border: 1px solid #333;
+    background: #000;
+    margin-bottom: 8px;
+    border: 1px solid #222;
 }
 
 .progress-fill {
     height: 100%;
-    background: var(--screen-text);
+    background: #8fb18f;
     width: 0%;
+    box-shadow: 0 0 10px #8fb18f;
 }
 
 #time-display {
     font-size: 0.7rem;
-    color: var(--screen-text);
+    color: #8fb18f;
+    font-family: monospace;
 }
 
+/* Pigeon bobbing */
 .spinning .pigeon-box {
-    animation: bob 0.5s infinite alternate ease-in-out;
+    animation: bob 0.6s infinite alternate ease-in-out;
+}
+
+.pigeon-box.knocked {
+    animation: squish 0.8s ease-out !important;
+}
+
+.pigeon-box.return-squish {
+    animation: squish-push 0.6s ease-out !important;
+}
+
+@keyframes squish-push {
+    0% { transform: scaleY(1); }
+    30% { transform: scaleY(0.7) translateY(5px); }
+    100% { transform: scaleY(1) translateY(0); }
+}
+
+@keyframes squish {
+    0% { transform: translateY(0) scaleY(1); }
+    20% { transform: translateY(20px) scaleY(0.6); }
+    40% { transform: translateY(15px) scaleY(0.8) rotate(5deg); }
+    100% { transform: translateY(0) scaleY(1) rotate(0); }
+}
+
+.falling-coin {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--screen-text);
+    font-weight: bold;
+    font-size: 20px;
+    z-index: 5;
+    animation: fall 0.6s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+.return-coin {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--screen-text);
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 5;
+    animation: fall-return 0.5s ease-in forwards;
+}
+
+@keyframes fall-return {
+    0% { top: 60%; opacity: 1; }
+    100% { top: 90%; opacity: 0; }
+}
+
+@keyframes fall {
+    0% { top: -20px; opacity: 1; }
+    70% { top: 40%; opacity: 1; }
+    100% { top: 60%; opacity: 0; }
 }
 
 @keyframes bob {
     from { transform: translateY(0); }
-    to { transform: translateY(-12px); }
+    to { transform: translateY(-10px); }
+}
+
+@media (max-width: 400px) {
+    .phone-casing {
+        padding: 30px 15px;
+    }
+    .display-area {
+        min-height: 200px;
+    }
+    .phone-button {
+        height: 65px;
+    }
 }
