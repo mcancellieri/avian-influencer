@@ -162,35 +162,46 @@ body {
 .phone-button {
     background: var(--keypad-black);
     border: 2px solid var(--metal-silver);
-    border-radius: 4px;
-    height: 110px; /* Increased height for multi-line ASCII */
+    border-radius: 8px;
+    height: 70px; /* Reduced height to fit on mobile screens */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 8px;
     cursor: pointer;
     transition: all 0.1s;
-    box-shadow: 0 5px 0 #000;
+    box-shadow:
+            0 4px 0 #000,
+            inset 1px 1px 1px rgba(255,255,255,0.1);
 }
 
 .phone-button:active {
-    transform: translateY(4px);
+    transform: translateY(3px);
     box-shadow: 0 1px 0 #000;
 }
 
 .btn-num {
     color: var(--keypad-text);
-    font-size: 0.8rem; /* Smaller number */
-    align-self: flex-start;
-    opacity: 0.6;
+    font-size: 1.8rem; /* Larger, clearer numbers */
+    font-weight: bold;
+    text-shadow:
+            -1px -1px 0px rgba(0,0,0,0.8),
+            1px 1px 0px rgba(255,255,255,0.1); /* Subtle embossed/debossed look */
+    line-height: 1;
+}
+
+.btn-label {
+    color: var(--metal-silver);
+    font-size: 0.55rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
 }
 
 .btn-art {
-    font-size: 8px; /* Adjusted for multi-line fit */
-    line-height: 1.1;
-    color: var(--metal-silver);
-    margin: auto;
+    display: none; /* Removed ASCII art from buttons as requested */
 }
 
 .btn-label {
