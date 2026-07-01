@@ -1,0 +1,13 @@
+{
+  "name": "vintage-answering-machine",
+  "version": "1.0.0",
+  "description": "A static page resembling an old answering machine with ASCII art.",
+  "type": "module",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}

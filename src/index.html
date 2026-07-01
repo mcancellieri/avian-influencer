@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vintage Answer Phone</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="machine-casing">
+        <header class="machine-header">
+            <div class="brand">VOX-O-MATIC 3000</div>
+            <div class="speaker-grill">
+                ||||||||||||||||
+                ||||||||||||||||
+            </div>
+            <div class="status-led"></div>
+        </header>
+
+        <section class="display-panel">
+            <div class="tape-deck">
+                <pre id="tape-reels" class="ascii-art">
+   .-------.       .-------.
+  /   (_)   \     /   (_)   \
+ |  _     _  |   |  _     _  |
+ | (_)   (_) |---| (_)   (_) |
+  \   (_)   /     \   (_)   /
+   '-------'       '-------'
+                </pre>
+            </div>
+            <div class="counter-window">
+                <div class="counter-label">MESSAGES</div>
+                <pre id="msg-counter" class="ascii-art">
+  ___  __ 
+ / _ \/_ |
+| | | || |
+| |_| || |
+ \___/ |_|
+                </pre>
+            </div>
+        </section>
+
+        <nav class="button-grid">
+            <div class="column">
+                <button class="phone-button" data-key="1">
+                    <span class="btn-label">PLAY</span>
+                    <pre class="btn-art">
+.-------.
+|   1   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="2">
+                    <span class="btn-label">STOP</span>
+                    <pre class="btn-art">
+.-------.
+|   2   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="3">
+                    <span class="btn-label">REWIND</span>
+                    <pre class="btn-art">
+.-------.
+|   3   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="4">
+                    <span class="btn-label">FAST FWD</span>
+                    <pre class="btn-art">
+.-------.
+|   4   |
+'-------'
+                    </pre>
+                </button>
+            </div>
+            <div class="column">
+                <button class="phone-button" data-key="5">
+                    <span class="btn-label">DELETE</span>
+                    <pre class="btn-art">
+.-------.
+|   5   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="6">
+                    <span class="btn-label">MEMO</span>
+                    <pre class="btn-art">
+.-------.
+|   6   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="7">
+                    <span class="btn-label">GREETING</span>
+                    <pre class="btn-art">
+.-------.
+|   7   |
+'-------'
+                    </pre>
+                </button>
+                <button class="phone-button" data-key="8">
+                    <span class="btn-label">VOLUME</span>
+                    <pre class="btn-art">
+   _.._
+ /      \
+|   ()   |
+ \      /
+  '----'
+                    </pre>
+                </button>
+            </div>
+        </nav>
+
+        <footer class="machine-footer">
+            <pre class="ascii-art">
+_________________________________
+|  ANALOG RECORDING TECHNOLOGY  |
+|_______________________________|
+            </pre>
+        </footer>
+    </div>
+    <script type="module" src="./index.js"></script>
+</body>
+</html>
