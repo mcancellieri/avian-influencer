@@ -1,129 +1,68 @@
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.phone-button');
-    const led = document.querySelector('.status-led');
-    const tapeDeck = document.querySelector('.display-panel');
-    const msgCounter = document.getElementById('msg-counter');
+    const displayArea = document.getElementById('main-display');
+    const storyDisplay = document.getElementById('story-display');
+    const storyText = document.getElementById('story-text');
+    const birdImage = document.getElementById('bird-image');
+    const closeBtn = document.getElementById('close-story');
+    const audioPlayer = document.getElementById('audio-player');
+    const progress = document.getElementById('progress');
+    const timeDisplay = document.getElementById('time-display');
+    const pigeonBox = document.querySelector('.pigeon-box');
 
-    let isPlaying = false;
-    let messageCount = 12;
+    const stories = {
+        '1': { name: 'Pigeon', text: 'I used to carry secret messages across the front lines. Now I just hang out near the subway for crumbs.', img: 'https://images.unsplash.com/photo-1514823197305-16c58a8ef756?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+        '2': { name: 'Owl', text: 'Everyone thinks I am wise. Honestly, I just have very large eyes and a high neck rotation.', img: 'https://images.unsplash.com/photo-1543549732-230fe5d83c4c?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
+        '3': { name: 'Duck', text: 'The pond is fine, but have you ever tried a heated pool? Absolute game changer.', img: 'https://images.unsplash.com/photo-1459156212016-c812468e2115?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
+        '4': { name: 'Chick', text: 'I just got here. Why is everything so big? And why do people keep making high-pitched noises at me?', img: 'https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3' },
+        '5': { name: 'Swan', text: 'Elegant? Yes. But if you come near my nest, I will remind you that I am basically a dinosaur in a fancy suit.', img: 'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3' },
+        '6': { name: 'Raven', text: 'Nevermore? More like "Whatevermore". I am actually quite optimistic for a bird.', img: 'https://images.unsplash.com/photo-1445108771252-d1cc31a02a3c?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3' },
+        '7': { name: 'Eagle', text: 'The view from up here is incredible. But finding a decent parking spot for a nest? Nightmare.', img: 'https://images.unsplash.com/photo-1481137344492-d5a0bb92f972?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3' },
+        '8': { name: 'Parrot', text: 'I can speak three languages and I still get paid in sunflower seeds. My agent is a bird-brain.', img: 'https://images.unsplash.com/photo-1522858547137-f1dcec554f55?w=200&h=200&fit=crop', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
+        '9': { name: 'Avian Influenza', text: 'A collective of bird-inspired lunatics. Matteo Cancellieri, Tony Gee, David Pride', audio: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3' },
 
-    const counterArt = {
-        '12': `
-  ___  __ 
- / _ \\/_ |
-| | | || |
-| |_| || |
- \\___/ |_|
-        `,
-        '11': `
- __  __ 
-/_ |/_ |
- | | | |
- | | | |
- | | | |
-        `,
-        '10': `
- __   ___  
-/_ | / _ \\ 
- | || | | |
- | || |_| |
- | | \\___/ 
-        `,
-        '09': `
-  ___   ___  
- / _ \\ / _ \\ 
-| | | | (_) |
-| |_| | \\__, |
- \\___/    /_/ 
-        `
-    };
-
-    const updateCounterDisplay = () => {
-        const key = messageCount.toString().padStart(2, '0');
-        if (counterArt[key]) {
-            msgCounter.textContent = counterArt[key].trim();
-        } else {
-            msgCounter.textContent = `\n  ${key}\n`;
-        }
     };
 
     buttons.forEach(btn => {
         btn.addEventListener('click', () => {
             const key = btn.getAttribute('data-key');
-            console.log(`Button ${key} pressed`);
-            
-            // Flash LED
-            led.classList.add('on');
-            setTimeout(() => {
-                if (!isPlaying) led.classList.remove('on');
-            }, 150);
-
-            handleAction(key);
-            updateCounterDisplay();
+            if (stories[key]) showStory(key);
         });
     });
 
-    function handleAction(key) {
-        switch(key) {
-            case '1': // PLAY
-                startPlayback();
-                break;
-            case '2': // STOP
-                stopPlayback();
-                break;
-            case '5': // DELETE
-                if (messageCount > 0) {
-                    messageCount--;
-                    // Update counter logic would go here
-                }
-                break;
-            default:
-                break;
-        }
+    function showStory(key) {
+        const story = stories[key];
+
+        // Audio
+        audioPlayer.src = story.audio;
+        audioPlayer.play().catch(e => console.warn("Play blocked", e));
+
+        // Display
+        storyText.textContent = story.text;
+        birdImage.style.backgroundImage = `url(${story.img})`;
+
+        pigeonBox.classList.add('hidden');
+        storyDisplay.classList.remove('hidden');
+        displayArea.classList.add('spinning');
     }
 
-    const reelsArt = [
-        `
-   .-------.       .-------.
-  /   (_)   \\     /   (_)   \\
- |  _     _  |   |  _     _  |
- | (_)   (_) |---| (_)   (_) |
-  \\   (_)   /     \\   (_)   /
-   '-------'       '-------'
-        `,
-        `
-   .-------.       .-------.
-  /   | |   \\     /   | |   \\
- |  -     -  |   |  -     -  |
- | | |   | | |---| | |   | | |
-  \\   | |   /     \\   | |   /
-   '-------'       '-------'
-        `
-    ];
+    audioPlayer.addEventListener('timeupdate', () => {
+        const pct = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progress.style.width = `${pct}%`;
+        const mins = Math.floor(audioPlayer.currentTime / 60);
+        const secs = Math.floor(audioPlayer.currentTime % 60).toString().padStart(2, '0');
+        timeDisplay.textContent = `${mins}:${secs}`;
+    });
 
-    let reelIndex = 0;
-    let reelInterval = null;
+    closeBtn.addEventListener('click', () => {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+        storyDisplay.classList.add('hidden');
+        pigeonBox.classList.remove('hidden');
+        displayArea.classList.remove('spinning');
+    });
 
-    function startPlayback() {
-        if (isPlaying) return;
-        isPlaying = true;
-        led.classList.add('on');
-        tapeDeck.classList.add('spinning');
-        
-        reelInterval = setInterval(() => {
-            reelIndex = (reelIndex + 1) % reelsArt.length;
-            document.getElementById('tape-reels').textContent = reelsArt[reelIndex].trim();
-        }, 300);
-        
-        console.log("Playback started...");
-    }
-
-    function stopPlayback() {
-        isPlaying = false;
-        led.classList.remove('on');
-        tapeDeck.classList.remove('spinning');
-        clearInterval(reelInterval);
-        document.getElementById('tape-reels').textContent = reelsArt[0].trim();
-        console.log("Playback stopped.");
-    }
+    audioPlayer.addEventListener('ended', () => {
+        displayArea.classList.remove('spinning');
+    });
 });
