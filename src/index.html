@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+<div id="popup" style="
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  line-height: 1.4;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  width: 85%;
+  max-width: 320px;
+  text-align: center;
+  box-sizing: border-box;
+">
+    HOT BIRDS IN TOWN EXHIBITION OPENING FRIDAY 28th AUGUST 7PM
+
+    Please select your Hot Bird by pressing one of the keys on the keypad.
+</div>
+<script>
+    const popup = document.getElementById('popup');
+
+    document.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+</script>
 <div class="phone-casing">
     <header class="phone-header">
         <div class="brand">ARTBOX-COMM v0.1</div>
