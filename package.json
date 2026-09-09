@@ -4,7 +4,7 @@
   "description": "A static page resembling an old answering machine with ASCII art.",
   "type": "module",
   "scripts": {
-    "start": "parcel src/index.html src/uncertainfuture/index.html",
+    "start": "parcel src/index.html src/uncertainfuture.html",
     "build": "parcel build src/index.html --public-url ./"
   },
   "devDependencies": {
