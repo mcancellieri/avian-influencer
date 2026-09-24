@@ -84,6 +84,7 @@ const AUDIO_FILES = {
     83: new URL('./assets/uncertainfutures/part_83.mp3', import.meta.url).toString(),
     84: new URL('./assets/uncertainfutures/part_84.mp3', import.meta.url).toString(),
     85: new URL('./assets/uncertainfutures/part_85.mp3', import.meta.url).toString()
+    86: new URL('./assets/uncertainfutures/intro.mp3', import.meta.url).toString()
 };
 
 const form = document.getElementById("fortuneForm");

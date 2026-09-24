@@ -89,6 +89,7 @@ text_clips = [
     "Take the path less trodden. We need the grass to grow back.",
     "Dance like no one is watching you",
     "Stay Dry! You will only ever get eaten by a shark if you get wet."
+    "You have reached the void between worlds. Step into the shadows and hear what the stars whisper in the dark. Please enter your eight-digit birthdate, followed by the hash key, and prepare yourself for your destiny. "
 ]
 
 VOICE = 'en-GB-SoniaNeural'
