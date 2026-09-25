@@ -206,7 +206,7 @@ body {
     color: #fca5a5;
 }
 
-.controls input[type="text"] {
+.controls input {
     width: 100%;
     background: rgba(69, 10, 10, 0.3);
     border: 1px solid rgba(239, 68, 68, 0.4);
@@ -220,7 +220,7 @@ body {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.controls input[type="text"]:focus {
+.controls input:focus {
     border-color: var(--blood-red);
     box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
 }
